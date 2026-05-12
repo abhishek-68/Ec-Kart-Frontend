@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useShopPageController } from '../../controllers/useShopPageController'
 import { useAuth } from '../../context/AuthContext'
@@ -10,7 +10,48 @@ import './ShopPage.css'
 function ShopPage() {
   const { filteredProducts, categories, status, error, filters } = useShopPageController()
   const { isLoggedIn } = useAuth()
-  const isLoading = status === 'loading'
+  const [displayedProducts, setDisplayedProducts] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [hasMore, setHasMore] = useState(true)
+  const [isLoadingMore, setIsLoadingMore] = useState(false)
+  const observerTarget = useRef(null)
+  const PRODUCTS_PER_PAGE = 8
+
+  // Initialize with first batch
+  useEffect(() => {
+    setCurrentPage(1)
+    setDisplayedProducts(filteredProducts.slice(0, PRODUCTS_PER_PAGE))
+    setHasMore(filteredProducts.length > PRODUCTS_PER_PAGE)
+  }, [filteredProducts])
+
+  // Infinite scroll observer
+  useEffect(() => {
+    if (!observerTarget.current) return
+
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting && hasMore && !isLoadingMore && status !== 'loading') {
+          setIsLoadingMore(true)
+          // Simulate network delay (remove if using real pagination)
+          setTimeout(() => {
+            const nextPage = currentPage + 1
+            const startIdx = nextPage * PRODUCTS_PER_PAGE
+            const endIdx = startIdx + PRODUCTS_PER_PAGE
+
+            const newProducts = filteredProducts.slice(0, endIdx)
+            setDisplayedProducts(newProducts)
+            setCurrentPage(nextPage)
+            setHasMore(endIdx < filteredProducts.length)
+            setIsLoadingMore(false)
+          }, 500)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    observer.observe(observerTarget.current)
+    return () => observer.disconnect()
+  }, [currentPage, hasMore, isLoadingMore, filteredProducts, status])
 
   return (
     <div className="shop-layout-shell">
@@ -22,15 +63,15 @@ function ShopPage() {
           <div className="sidebar-section">
             <h3>Categories</h3>
             <div className="category-list">
-              <button 
+              <button
                 className={`category-btn ${filters.activeCategory === 'All' ? 'active' : ''}`}
                 onClick={() => filters.setActiveCategory('All')}
               >
                 All Products
               </button>
               {categories.map(cat => (
-                <button 
-                  key={cat.id} 
+                <button
+                  key={cat.id}
                   className={`category-btn ${filters.activeCategory === cat.name ? 'active' : ''}`}
                   onClick={() => filters.setActiveCategory(cat.name)}
                 >
@@ -43,10 +84,10 @@ function ShopPage() {
           <div className="sidebar-section">
             <h3>Filter by Price</h3>
             <div className="price-filter">
-              <input 
-                type="range" 
-                min="0" 
-                max="200000" 
+              <input
+                type="range"
+                min="0"
+                max="200000"
                 step="500"
                 value={filters.priceRange[1]}
                 onChange={(e) => filters.setPriceRange([0, parseInt(e.target.value)])}
@@ -60,64 +101,76 @@ function ShopPage() {
           </div>
 
           {(filters.activeCategory !== 'All' || filters.searchQuery !== '') && (
-             <button className="category-btn reset-btn" onClick={filters.resetFilters}>
-                &times; Clear All Filters
-             </button>
+            <button className="category-btn reset-btn" onClick={filters.resetFilters}>
+              &times; Clear All Filters
+            </button>
           )}
         </aside>
 
         {/* MAIN CONTENT: Header + Grid */}
         <section className="shop-content">
           <header className="shop-header">
-             <div className="shop-title">
-                <h2>{filters.activeCategory === 'All' ? 'All Products' : filters.activeCategory}</h2>
-             </div>
+            <div className="shop-title">
+              <h2>{filters.activeCategory === 'All' ? 'All Products' : filters.activeCategory}</h2>
+            </div>
 
-             <div className="shop-controls">
-                <div className="search-wrapper">
-                   <svg className="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
-                   <input 
-                      type="text" 
-                      className="search-input"
-                      placeholder="Search products..." 
-                      value={filters.searchQuery}
-                      onChange={(e) => filters.setSearchQuery(e.target.value)}
-                   />
-                </div>
+            <div className="shop-controls">
+              <div className="search-wrapper">
+                <svg className="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+                <input
+                  type="text"
+                  className="search-input"
+                  placeholder="Search products..."
+                  value={filters.searchQuery}
+                  onChange={(e) => filters.setSearchQuery(e.target.value)}
+                />
+              </div>
 
-                <select 
-                   className="sort-dropdown" 
-                   value={filters.sortBy} 
-                   onChange={(e) => filters.setSortBy(e.target.value)}
-                >
-                   <option value="newest">Sort: Newest</option>
-                   <option value="price-low">Price: Low to High</option>
-                   <option value="price-high">Price: High to Low</option>
-                   <option value="name">Name: A-Z</option>
-                </select>
-             </div>
+              <select
+                className="sort-dropdown"
+                value={filters.sortBy}
+                onChange={(e) => filters.setSortBy(e.target.value)}
+              >
+                <option value="newest">Sort: Newest</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="name">Name: A-Z</option>
+              </select>
+            </div>
           </header>
 
           {error && <div className="error-alert">Failed to load products. please check your connection.</div>}
-          
+
           <div className="shop-grid">
-            {isLoading ? (
+            {status === 'loading' && displayedProducts.length === 0 ? (
               Array.from({ length: 6 }).map((_, i) => (
-                 <div key={i} className="product-shop-card skeleton-loading" />
+                <div key={i} className="product-shop-card skeleton-loading" />
               ))
             ) : (
-              filteredProducts.length === 0 ? (
+              displayedProducts.length === 0 ? (
                 <div className="no-results-box">
-                   <h3>No products found</h3>
-                   <p>Try adjusting your search or filters.</p>
+                  <h3>No products found</h3>
+                  <p>Try adjusting your search or filters.</p>
                 </div>
               ) : (
-                filteredProducts.map(product => (
+                displayedProducts.map(product => (
                   <ProductCard key={product.id} product={product} />
                 ))
               )
             )}
           </div>
+
+          {/* Infinite scroll trigger */}
+          {hasMore && displayedProducts.length > 0 && (
+            <div ref={observerTarget} className="scroll-trigger">
+              {isLoadingMore && (
+                <div className="loading-more">
+                  <div className="spinner"></div>
+                  <p>Loading more...</p>
+                </div>
+              )}
+            </div>
+          )}
         </section>
       </main>
 
@@ -127,4 +180,3 @@ function ShopPage() {
 }
 
 export default ShopPage
-
