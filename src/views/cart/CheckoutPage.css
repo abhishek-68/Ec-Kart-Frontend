@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #64748b;
+  color: #236516;
   text-decoration: none;
   font-size: 14px;
   margin-bottom: 20px;
@@ -22,7 +22,7 @@
 .checkout-title {
   font-size: 32px;
   font-weight: 700;
-  color: #1e293b;
+  color: #236516;
   margin-bottom: 30px;
 }
 
@@ -38,13 +38,13 @@
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  color: #94a3b8;
+  color: #98ae83;
 }
 
 .step span {
   width: 24px;
   height: 24px;
-  border: 1.5px solid #94a3b8;
+  border: 1.5px solid #98ae83;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -53,19 +53,19 @@
 }
 
 .step.active {
-  color: #6366f1;
+  color: #236516;
 }
 
 .step.active span {
-  border-color: #6366f1;
-  background-color: #6366f1;
-  color: #fff;
+  border-color: #236516;
+  background-color: #236516;
+  color: #ffffd5;
 }
 
 .step-sep {
   width: 40px;
   height: 1px;
-  background-color: #e2e8f0;
+  background-color: #ffffff;
 }
 
 .checkout-layout {
@@ -76,8 +76,8 @@
 }
 
 .checkout-section {
-  background: #fff;
-  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  border: 1px solid #ffffd5;
   border-radius: 16px;
   padding: 24px;
   margin-bottom: 30px;
@@ -93,11 +93,11 @@
 .section-header h2 {
   font-size: 18px;
   font-weight: 600;
-  color: #1e293b;
+  color: #236516;
 }
 
 .btn-text {
-  color: #6366f1;
+  color: #236516;
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
@@ -110,7 +110,7 @@
 }
 
 .address-card {
-  border: 1.5px solid #e2e8f0;
+  border: 1.5px solid #ffffd5;
   border-radius: 12px;
   padding: 16px;
   cursor: pointer;
@@ -119,12 +119,12 @@
 }
 
 .address-card:hover {
-  border-color: #cbd5e1;
+  border-color: #98ae83;
 }
 
 .address-card.selected {
-  border-color: #6366f1;
-  background-color: #f5f3ff;
+  border-color: #236516;
+  background-color: #ffffff;
 }
 
 .address-card-header {
@@ -136,9 +136,9 @@
 .address-type {
   font-size: 12px;
   font-weight: 600;
-  color: #64748b;
+  color: #236516;
   text-transform: uppercase;
-  background-color: #f1f5f9;
+  background-color: #ffffff;
   padding: 4px 8px;
   border-radius: 4px;
 }
@@ -146,25 +146,25 @@
 .selected-badge {
   font-size: 12px;
   font-weight: 600;
-  color: #6366f1;
+  color: #236516;
 }
 
 .address-name {
   font-weight: 600;
-  color: #1e293b;
+  color: #236516;
   margin-bottom: 4px;
 }
 
 .address-details {
   font-size: 14px;
-  color: #64748b;
+  color: #236516;
   line-height: 1.6;
   margin-bottom: 8px;
 }
 
 .address-phone {
   font-size: 13px;
-  color: #475569;
+  color: #236516;
   font-weight: 500;
 }
 
@@ -179,7 +179,7 @@
   align-items: center;
   gap: 16px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid #ffffd5;
 }
 
 .checkout-item:last-child {
@@ -191,7 +191,7 @@
   width: 64px;
   height: 64px;
   object-fit: contain;
-  background-color: #f8fafc;
+  background-color: #ffffff;
   border-radius: 8px;
 }
 
@@ -202,24 +202,24 @@
 .checkout-item-info h3 {
   font-size: 14px;
   font-weight: 600;
-  color: #1e293b;
+  color: #236516;
   margin-bottom: 4px;
 }
 
 .checkout-item-info p {
   font-size: 13px;
-  color: #94a3b8;
+  color: #98ae83;
 }
 
 .checkout-item-price {
   font-weight: 600;
-  color: #1e293b;
+  color: #236516;
   font-size: 15px;
 }
 
 .order-summary-card {
-  background: #fff;
-  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  border: 1px solid #ffffd5;
   border-radius: 16px;
   padding: 24px;
   position: sticky;
@@ -230,7 +230,7 @@
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 24px;
-  color: #1e293b;
+  color: #236516;
 }
 
 .summary-rows {
@@ -243,12 +243,12 @@
   display: flex;
   justify-content: space-between;
   font-size: 15px;
-  color: #64748b;
+  color: #236516;
 }
 
 .summary-divider {
   height: 1px;
-  background-color: #e2e8f0;
+  background-color: #ffffff;
   margin: 20px 0;
 }
 
@@ -257,7 +257,7 @@
   justify-content: space-between;
   font-size: 18px;
   font-weight: 700;
-  color: #1e293b;
+  color: #236516;
   margin-bottom: 24px;
 }
 
@@ -268,8 +268,8 @@
   justify-content: center;
   gap: 12px;
   height: 52px;
-  background: #101828;
-  color: #fff;
+  background: #236516;
+  color: #ffffd5;
   border: none;
   border-radius: 10px;
   font-size: 16px;
@@ -284,13 +284,13 @@
 }
 
 .checkout-error {
-  background-color: #fef2f2;
-  color: #dc2626;
+  background-color: #ffffff;
+  color: #236516;
   padding: 12px;
   border-radius: 8px;
   font-size: 14px;
   margin-bottom: 16px;
-  border: 1px solid #fee2e2;
+  border: 1px solid #ffffd5;
 }
 
 .checkout-security {
@@ -299,7 +299,7 @@
   justify-content: center;
   gap: 8px;
   font-size: 12px;
-  color: #94a3b8;
+  color: #98ae83;
   margin-top: 20px;
 }
 

@@ -104,7 +104,7 @@ export default function CheckoutPage() {
           contact: razorpayData.contact || '8888888888',
         },
         theme: {
-          color: '#2563eb',
+          color: '#236516',
         },
         modal: {
           ondismiss: function() {

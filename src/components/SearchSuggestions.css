@@ -24,12 +24,12 @@
 }
 
 .search-suggestions::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #98ae83;
   border-radius: 10px;
 }
 
 .search-suggestions::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #98ae83;
 }
 
 /* Loading state */
@@ -151,7 +151,7 @@
 }
 
 .stars {
-  color: #ffc107;
+  color: #98ae83;
 }
 
 .rating-value {
@@ -171,7 +171,7 @@
 .suggestion-item:hover .suggestion-arrow,
 .suggestion-item.highlighted .suggestion-arrow {
   opacity: 1;
-  color: #ff6b35;
+  color: #98ae83;
 }
 
 /* View all results link */

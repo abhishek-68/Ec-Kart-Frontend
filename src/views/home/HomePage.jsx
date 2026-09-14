@@ -1,145 +1,32 @@
-import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useHomePageController } from '../../controllers/useHomePageController'
-import { useAuth } from '../../context/AuthContext'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import ProductCard from '../../components/ProductCard'
-import logo from '../../assets/logo.png'
-import hero_electronics from '../../assets/hero_electronics.png'
-import hero_fashion from '../../assets/hero_fashion.png'
+import heroElectronics from '../../assets/hero_electronics.png'
 
-const BANNERS = [
-  {
-    id: 1,
-    title: "The Future of Tech",
-    subtitle: "Explore our latest electronics collection",
-    image: hero_electronics,
-    bgColor: "#e2f1ff",
-    link: "/shop?category=Electronics"
-  },
-  {
-    id: 2,
-    title: "Elevate Your Style",
-    subtitle: "Curated fashion for the modern individual",
-    image: hero_fashion,
-    bgColor: "#fff0f3",
-    link: "/shop?category=Fashion"
-  }
+const benefits = [
+  ['Curated selection', 'Thoughtfully chosen essentials, updated every week.'],
+  ['Secure checkout', 'Simple, protected payments from cart to door.'],
+  ['Built around you', 'Discover more of what fits your everyday.'],
 ]
 
-
-function FannedCard({ product, index, total }) {
-  const middle = Math.floor(total / 2)
-  const offset = index - middle 
-  
-  const rotateDeg = offset * 8 
-  const translateY = Math.abs(offset) * 15
-  const translateX = offset * 60
-
-  return (
-    <div 
-      className="fanned-card"
-      style={{
-        transform: `translateX(${translateX}px) translateY(${translateY}px) rotate(${rotateDeg}deg)`,
-        zIndex: total - Math.abs(offset)
-      }}
-    >
-      {product.imageUrl ? (
-        <img src={product.imageUrl} alt={product.name} />
-      ) : (
-        <div className="card-placeholder" style={{ background: `hsl(${offset * 40 + 210}, 60%, 55%)` }}>
-          {product.categoryName?.slice(0, 1) || 'P'}
-        </div>
-      )}
-    </div>
-  )
-}
-
-function HeroCarousel() {
-  const [current, setCurrent] = useState(0)
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent(prev => (prev + 1) % BANNERS.length)
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [])
-
-  return (
-    <div className="hero-carousel">
-      {BANNERS.map((banner, idx) => (
-        <div 
-          key={banner.id} 
-          className={`carousel-slide ${idx === current ? 'active' : ''}`}
-          style={{ backgroundColor: banner.bgColor }}
-        >
-          <div className="slide-content">
-            <div className="slide-text">
-              <h1>{banner.title}</h1>
-              <p>{banner.subtitle}</p>
-              <Link to={banner.link} className="btn-primary">Shop Now</Link>
-            </div>
-            <div className="slide-image">
-              <img src={banner.image} alt={banner.title} />
-            </div>
-          </div>
-        </div>
-      ))}
-      <div className="carousel-dots">
-        {BANNERS.map((_, idx) => (
-          <button 
-            key={idx} 
-            className={`dot ${idx === current ? 'active' : ''}`}
-            onClick={() => setCurrent(idx)}
-          />
-        ))}
-      </div>
-    </div>
-  )
-}
-
-function Pagination() {
-  return (
-    <div className="pagination-container">
-      <div className="pagination-inner">
-        <div className="page-numbers">
-          <span className="page-num active">1</span>
-          <span className="page-num">2</span>
-          <span className="page-num">3</span>
-          <span className="page-num">...</span>
-          <span className="page-num">n</span>
-        </div>
-        <div className="page-arrows">
-          <button className="square-arrow-btn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
-            </svg>
-          </button>
-          <button className="square-arrow-btn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  )
+function CategoryRail({ sections, isLoading }) {
+  const categories = sections.slice(0, 5)
+  if (!isLoading && !categories.length) return null
+  return <section className="home-categories" aria-label="Shop by category"><p className="home-eyebrow">Explore by department</p><div className="home-category-rail">{(isLoading ? Array(5).fill(null) : categories).map((category, index) => category ? <Link key={category.id} to={`/shop?category=${encodeURIComponent(category.title)}`} className="home-category-pill"><span className="home-category-number">0{index + 1}</span><span>{category.title}</span><span aria-hidden="true">↗</span></Link> : <div key={index} className="home-category-skeleton" />)}</div></section>
 }
 
 function FeaturedProductsSection({ products, isLoading }) {
-  // Only show existing products, up to 8
-  const displayProducts = isLoading 
-    ? Array(8).fill(null) 
-    : products.slice(0, 8)
+  const displayProducts = isLoading ? Array(4).fill(null) : products.slice(0, 4)
 
   if (!isLoading && displayProducts.length === 0) return null
 
   return (
     <section className="featured-products-section">
-      <div className="section-head">
-        <h2>Featured Products</h2>
-        <Link to="/shop" className="view-all">View All</Link>
+      <div className="section-head home-section-head">
+        <div><p className="home-eyebrow">Selected for you</p><h2>Worth a closer look.</h2></div>
+        <Link to="/shop" className="home-text-link">Shop all <span aria-hidden="true">→</span></Link>
       </div>
       <div className="grid-container-4col">
         {displayProducts.map((product, idx) => (
@@ -159,52 +46,23 @@ function FeaturedProductsSection({ products, isLoading }) {
 }
 
 function HomePage() {
-  const { featuredProducts, spotlightDeals, showcaseSections, status, error } = useHomePageController()
-  const { isLoggedIn } = useAuth()
+  const { featuredProducts, showcaseSections, status, error, stats } = useHomePageController()
   const isLoading = status === 'loading'
   const isError = status === 'error'
-
-  const heroCards = isLoading ? Array(5).fill({}) : featuredProducts.slice(0, 5)
-  while (heroCards.length > 0 && heroCards.length < 5) {
-    heroCards.push({ id: `pad-${heroCards.length}`, name: 'Coming Soon', categoryName: 'New' })
-  }
+  const productCount = stats?.productCount || 0
 
   return (
-    <div className="pallet-shell">
+    <div className="pallet-shell home-shell">
       <Navbar />
-
-      {/* 2. OLD HERO SECTION */}
-      <section className="hero">
-        <h1 className="hero-title">
-          Discover your next <br/> favorite thing.
-        </h1>
-
-        <div className="fanned-showcase">
-          <div className="card-deck">
-            {heroCards.map((product, idx) => (
-              <FannedCard key={product.id || idx} product={product} index={idx} total={heroCards.length} />
-            ))}
-          </div>
-        </div>
-
-        <p className="hero-subtitle">
-          Explore our curated collection of premium products across fashion, electronics, and home essentials.
-        </p>
-
-        <div className="hero-cta">
-          <Link to="/shop" className="btn-primary" style={{ textDecoration: 'none' }}>
-            Shop Collection
-          </Link>
-        </div>
-      </section>
-      <main className="pallet-main">
-        {isError && (
-          <div className="error-banner">Backend connection failed. Cannot load live products.</div>
-        )}
-
+      <main className="home-main">
+        <section className="home-hero">
+          <div className="home-hero-copy"><p className="home-eyebrow">Ec-Kart / Everyday, elevated</p><h1>Good choices.<br /><em>Beautifully simple.</em></h1><p className="home-hero-description">A modern marketplace for the products that make daily life feel a little more considered.</p><div className="home-hero-actions"><Link to="/shop" className="home-primary-action">Explore the collection <span aria-hidden="true">→</span></Link><Link to="/categories" className="home-secondary-action">Browse categories</Link></div><div className="home-proof"><span className="home-proof-mark">✦</span><span>{productCount ? `${productCount}+ products ready to discover` : 'Fresh products arriving weekly'}</span></div></div>
+          <div className="home-hero-visual"><div className="home-orbit home-orbit-one" /><div className="home-orbit home-orbit-two" /><div className="home-hero-image-wrap"><img src={heroElectronics} alt="A curated electronics collection" /></div><div className="home-floating-note"><span>New edit</span><strong>Made for your next move.</strong></div></div>
+        </section>
+        {isError && <div className="error-banner">{error || 'We could not load the latest products. Please try again shortly.'}</div>}
+        <CategoryRail sections={showcaseSections} isLoading={isLoading} />
         <FeaturedProductsSection products={featuredProducts} isLoading={isLoading} />
-
-        {/* BRAND SIGNATURE BEFORE FOOTER */}
+        <section className="home-benefits">{benefits.map(([title, description], index) => <article key={title} className="home-benefit"><span className="home-benefit-index">0{index + 1}</span><div><h3>{title}</h3><p>{description}</p></div></article>)}</section>
       </main>
 
       <Footer />

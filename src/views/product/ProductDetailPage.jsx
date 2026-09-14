@@ -272,9 +272,9 @@ function ProductDetailPage() {
                 className={`btn-wishlist-mini-glass ${inWishlist ? 'active' : ''}`}
                 onClick={handleWishlistToggle}
                 disabled={wishlistLoading}
-                style={{ background: 'white', border: '1px solid #000' }}
+                style={{ background: '#ffffff', border: '1px solid #236516' }}
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill={inWishlist ? '#000000' : 'none'} stroke="#000000" strokeWidth="2.5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill={inWishlist ? '#236516' : 'none'} stroke="#236516" strokeWidth="2.5">
                   <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
               </button>
@@ -446,7 +446,7 @@ function ProductDetailPage() {
               <span>Deal</span>
             </button>
             <button className={`btn-bottom-icon ${inWishlist ? 'active' : ''}`} title="Add to Wishlist" onClick={handleWishlistToggle} disabled={wishlistLoading}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill={inWishlist ? '#000000' : 'none'} stroke="#000000" strokeWidth="3">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill={inWishlist ? '#236516' : 'none'} stroke="#236516" strokeWidth="3">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
               </svg>
               <span>Like</span>

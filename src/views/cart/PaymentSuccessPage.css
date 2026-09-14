@@ -3,15 +3,15 @@
   justify-content: center;
   align-items: center;
   padding: 80px 20px;
-  background-color: #f8fafc;
+  background-color: #ffffff;
   min-height: 80vh;
 }
 
 .success-card {
-  background: #fff;
+  background: #ffffff;
   padding: 60px 40px;
   border-radius: 24px;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 25px -5px rgba(35, 101, 22, 0.05), 0 8px 10px -6px rgba(35, 101, 22, 0.05);
   max-width: 500px;
   width: 100%;
   text-align: center;
@@ -27,11 +27,11 @@
 .status-container h1 {
   font-size: 28px;
   font-weight: 700;
-  color: #1e293b;
+  color: #236516;
 }
 
 .status-container p {
-  color: #64748b;
+  color: #236516;
   font-size: 16px;
   line-height: 1.6;
 }
@@ -39,8 +39,8 @@
 .loading-spinner {
   width: 48px;
   height: 48px;
-  border: 4px solid #f1f5f9;
-  border-top-color: #6366f1;
+  border: 4px solid #ffffd5;
+  border-top-color: #236516;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -52,7 +52,7 @@
 .check-icon {
   width: 100px;
   height: 100px;
-  background-color: #f0fdf4;
+  background-color: #ffffff;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -61,7 +61,7 @@
 }
 
 .success-title {
-  color: #16a34a !important;
+  color: #98ae83 !important;
 }
 
 .success-msg {
@@ -86,7 +86,7 @@
 .error-icon {
   width: 100px;
   height: 100px;
-  background-color: #fef2f2;
+  background-color: #ffffff;
   border-radius: 50%;
   display: flex;
   align-items: center;

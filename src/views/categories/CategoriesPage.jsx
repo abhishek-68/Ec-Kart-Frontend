@@ -12,13 +12,13 @@ function CategoryBubble({ category, index }) {
   
   // Define a set of vibrant Adobe-style colors
   const colors = [
-    '#ff0000', // Adobe Red
-    '#2196f3', // Blue
-    '#4caf50', // Green
-    '#1a1a1a', // Black
-    '#ff9800', // Orange
-    '#673ab7', // Deep Purple
-    '#00bcd4'  // Cyan
+    '#236516', // Adobe Red
+    '#98ae83', // Blue
+    '#98ae83', // Green
+    '#236516', // Black
+    '#98ae83', // Orange
+    '#236516', // Deep Purple
+    '#98ae83'  // Cyan
   ];
   
   const bgColor = colors[index % colors.length];

@@ -31,13 +31,13 @@ export default function OrdersPage() {
 
   const getStatusInfo = (status) => {
     switch (status) {
-      case 'PAID': return { label: 'Paid', color: '#10b981', bg: '#ecfdf5' }
-      case 'PENDING_PAYMENT': return { label: 'Pending Payment', color: '#f59e0b', bg: '#fffbeb' }
-      case 'DELIVERED': return { label: 'Delivered', color: '#3b82f6', bg: '#eff6ff' }
-      case 'CANCELLED': return { label: 'Cancelled', color: '#ef4444', bg: '#fef2f2' }
-      case 'FAILED': return { label: 'Failed', color: '#ef4444', bg: '#fef2f2' }
-      case 'REFUNDED': return { label: 'Refunded', color: '#8b5cf6', bg: '#f5f3ff' }
-      default: return { label: status, color: '#64748b', bg: '#f8fafc' }
+      case 'PAID': return { label: 'Paid', color: '#98ae83', bg: '#ffffd5' }
+      case 'PENDING_PAYMENT': return { label: 'Pending Payment', color: '#98ae83', bg: '#ffffd5' }
+      case 'DELIVERED': return { label: 'Delivered', color: '#98ae83', bg: '#ffffd5' }
+      case 'CANCELLED': return { label: 'Cancelled', color: '#236516', bg: '#ffffd5' }
+      case 'FAILED': return { label: 'Failed', color: '#236516', bg: '#ffffd5' }
+      case 'REFUNDED': return { label: 'Refunded', color: '#236516', bg: '#ffffd5' }
+      default: return { label: status, color: '#236516', bg: '#ffffd5' }
     }
   }
 
@@ -129,7 +129,7 @@ export default function OrdersPage() {
                                 )}
                                 {(!order.itemThumbnails || order.itemThumbnails.length === 0) && (
                                    <div className="preview-img-box empty">
-                                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#98ae83"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
                                    </div>
                                 )}
                               </div>

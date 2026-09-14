@@ -4,7 +4,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(35, 101, 22, 0.4);
     backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
@@ -24,8 +24,8 @@
 }
 
 .negotiator-header {
-    background: #0f172a;
-    color: #fff;
+    background: #236516;
+    color: #ffffd5;
     padding: 1.25rem;
     display: flex;
     justify-content: space-between;
@@ -41,14 +41,14 @@
 .assistant-avatar {
     width: 32px;
     height: 32px;
-    background: #000;
+    background: #236516;
     border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.75rem;
     font-weight: 900;
-    color: #fff;
+    color: #ffffd5;
 }
 
 .header-info h3 {
@@ -59,19 +59,19 @@
 
 .online-status {
     font-size: 0.75rem;
-    color: #94a3b8;
+    color: #98ae83;
 }
 
 .close-btn {
     background: none;
     border: none;
-    color: #94a3b8;
+    color: #98ae83;
     cursor: pointer;
     transition: color 0.2s;
 }
 
 .close-btn:hover {
-    color: #fff;
+    color: #ffffd5;
 }
 
 .negotiator-chat-body {
@@ -115,7 +115,7 @@
 
 .mini-price {
     font-size: 0.75rem;
-    color: #64748b;
+    color: #236516;
 }
 
 /* Modern Glassmorphism Price Negotiator */
@@ -123,7 +123,7 @@
 .negotiator-glass-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(35, 101, 22, 0.4);
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
@@ -149,8 +149,8 @@
 }
 
 .negotiator-glass-modal.success-mode {
-  border-color: rgba(34, 197, 94, 0.4);
-  background: rgba(240, 253, 244, 0.85);
+  border-color: rgba(152, 174, 131, 0.4);
+  background: rgba(255, 255, 213, 0.85);
 }
 
 /* Header */
@@ -172,19 +172,19 @@
 .bot-orb {
   width: 44px;
   height: 44px;
-  background: #000;
+  background: #236516;
   border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(35, 101, 22, 0.1);
 }
 
 .orb-inner {
   width: 14px;
   height: 14px;
-  background: #fff;
+  background: #ffffff;
   border-radius: 50%;
   animation: orb-pulse 2s infinite ease-in-out;
 }
@@ -214,12 +214,12 @@
   content: '';
   width: 6px;
   height: 6px;
-  background: #22c55e;
+  background: #98ae83;
   border-radius: 50%;
 }
 
 .nego-close {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(35, 101, 22, 0.05);
   border: none;
   width: 36px;
   height: 36px;
@@ -227,14 +227,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #64748b;
+  color: #236516;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .nego-close:hover {
-  background: #ef4444;
-  color: #fff;
+  background: #236516;
+  color: #ffffd5;
   transform: rotate(90deg);
 }
 
@@ -313,7 +313,7 @@
 .bot-dot {
   width: 8px;
   height: 8px;
-  background: #000;
+  background: #236516;
   border-radius: 0;
   margin-top: 1rem;
 }
@@ -334,8 +334,8 @@
 }
 
 .user .nego-bubble {
-  background: #000;
-  color: #fff;
+  background: #236516;
+  color: #ffffd5;
   border-bottom-right-radius: 0;
 }
 
@@ -352,7 +352,7 @@
 .nego-typing .dot {
   width: 6px;
   height: 6px;
-  background: #cbd5e1;
+  background: #98ae83;
   border-radius: 50%;
   animation: typing 1.4s infinite ease-in-out;
 }
@@ -398,15 +398,15 @@
 }
 
 .glass-chip:hover:not(:disabled) {
-  background: #4f46e5;
-  color: #fff;
-  border-color: #4f46e5;
+  background: #236516;
+  color: #ffffd5;
+  border-color: #236516;
   transform: translateY(-2px);
 }
 
 .glass-chip.info {
-  background: rgba(0, 0, 0, 0.03);
-  color: #64748b;
+  background: rgba(35, 101, 22, 0.03);
+  color: #236516;
 }
 
 .nego-input-area {
@@ -432,20 +432,20 @@
 .nego-send {
   width: 40px;
   height: 40px;
-  background: #000;
+  background: #236516;
   border: none;
   border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: #ffffd5;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .nego-send:hover:not(:disabled) {
-  background: #333;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: #236516;
+  box-shadow: 0 4px 12px rgba(35, 101, 22, 0.2);
 }
 
 /* Success Actions */
@@ -454,7 +454,7 @@
 }
 
 .success-banner {
-  background: rgba(34, 197, 94, 0.1);
+  background: rgba(152, 174, 131, 0.1);
   padding: 1rem;
   border-radius: 16px;
   margin-bottom: 1.5rem;
@@ -469,7 +469,7 @@
 .success-banner p {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #15803d;
+  color: #236516;
   margin: 0;
 }
 
@@ -480,8 +480,8 @@
 
 .btn-direct-add {
   flex: 2;
-  background: #000;
-  color: #fff;
+  background: #236516;
+  color: #ffffd5;
   border: none;
   padding: 1rem;
   border-radius: 0;
@@ -494,15 +494,15 @@
 }
 
 .btn-direct-add:hover {
-  background: #333;
+  background: #236516;
   transform: translateY(-2px);
 }
 
 .btn-renego {
   flex: 1;
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  color: #64748b;
+  background: #ffffff;
+  border: 1px solid #ffffd5;
+  color: #236516;
   padding: 1rem;
   border-radius: 16px;
   font-size: 0.85rem;
@@ -512,8 +512,8 @@
 }
 
 .btn-renego:hover {
-  background: #f8fafc;
-  color: #1e293b;
+  background: #ffffff;
+  color: #236516;
 }
 
 /* Animations */
@@ -532,8 +532,8 @@
 
 .mini-offer-badge {
     margin-left: auto;
-    background: #10b981;
-    color: #fff;
+    background: #98ae83;
+    color: #ffffd5;
     font-size: 0.65rem;
     font-weight: 800;
     padding: 0.25rem 0.6rem;
@@ -544,7 +544,7 @@
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-    70% { transform: scale(1.05); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(152, 174, 131, 0.4); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 6px rgba(152, 174, 131, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(152, 174, 131, 0); }
 }

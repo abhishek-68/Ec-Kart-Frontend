@@ -26,8 +26,8 @@ export default function StarRating({ rating = 0, count = null, size = 'md', onRa
             width={getSizeClass()}
             height={getSizeClass()}
             viewBox="0 0 24 24"
-            fill={star <= (editable ? rating : fullRating) ? '#000000' : '#e5e7eb'}
-            stroke={star <= (editable ? rating : fullRating) ? '#000000' : '#d1d5db'}
+            fill={star <= (editable ? rating : fullRating) ? '#236516' : '#ffffd5'}
+            stroke={star <= (editable ? rating : fullRating) ? '#236516' : '#98ae83'}
             strokeWidth="1"
             style={{ cursor: editable ? 'pointer' : 'default', transition: 'all 0.2s ease' }}
             onClick={() => editable && onRate && onRate(star)}
@@ -38,7 +38,7 @@ export default function StarRating({ rating = 0, count = null, size = 'md', onRa
         ))}
       </div>
       {count !== null && (
-        <span className="rating-text" style={{ fontSize: '0.95rem', color: '#000', marginLeft: '8px', fontWeight: '900' }}>
+        <span className="rating-text" style={{ fontSize: '0.95rem', color: '#236516', marginLeft: '8px', fontWeight: '900' }}>
           {typeof rating === 'number' ? rating.toFixed(1) : '0.0'} {count !== null && `(${count})`}
         </span>
       )}
